@@ -65,6 +65,46 @@ data2['Area']=data2['Area'].astype('int')
 data2['Production']=data2['Production'].astype('int')
 
 
+columns_list=list(data2.columns)
+print(columns_list)
+features=list(set(columns_list)-set(['Production']))
+print(features)
+y=data2['Production'].values
+
+x=data2[features].values
+
+
+
+from sklearn.model_selection import train_test_split 
+  
+X_train, X_test, y_train, y_test = train_test_split(x,y, test_size = 0.30) 
+  
+# Remember that we are trying to come up 
+# with a model to predict whether 
+# someone will TARGET CLASS or not. 
+# We'll start with k = 1. 
+data2.info()  
+from sklearn.neighbors import KNeighborsClassifier 
+  
+knn = KNeighborsClassifier(n_neighbors = 1) 
+  
+knn.fit(X_train, y_train) 
+pred= knn.predict(X_test) 
+
+
+
+
+
+
+columns_list1=list(data2.columns)
+print(columns_list1)
+features1=list(set(columns_list1)-set(['Crop']))
+print(features1)
+print(features1)
+y1=data2['Crop'].values
+print(y1)
+x1=data2[features1].values
+print(x1)
 
 
 
@@ -73,14 +113,17 @@ data2['Production']=data2['Production'].astype('int')
 
 
 
-
-
-
-
-
-
-
-
+from sklearn.model_selection import train_test_split 
+  
+X_train1, X_test1, y_train1, y_test1 = train_test_split(x1,y1, test_size = 0.30) 
+  
+  
+from sklearn.neighbors import KNeighborsClassifier 
+  
+knn1 = KNeighborsClassifier(n_neighbors = 1) 
+  
+knn1.fit(X_train1, y_train1) 
+pred1 = knn1.predict(X_test) 
 
 
 
@@ -133,8 +176,8 @@ from flask import Flask, request, jsonify, render_template
 import pickle
 
 app = Flask(__name__)
-model = pickle.load(open('modelknn.pkl', 'rb'))
-model1 = pickle.load(open('modelknn1.pkl', 'rb'))
+model = knn
+model1 =knn1
 
 @app.route('/')
 def home():
@@ -349,3 +392,26 @@ def predict1():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

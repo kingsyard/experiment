@@ -24,7 +24,7 @@ body {
 	<h1>Predict alternative crop</h1>
 
      <!-- Main Input For Receiving Query to our ML -->
-    <form method="post">
+    <form action="{{ url_for('predict1')}}"method="post">
     	<input type="text" name="experience" placeholder="state name" required="required" /><br><br><br>
         <input type="text" name="test_score" placeholder="district name" required="required" /><br><br><br>
 		<input type="text" name="interview_score1" placeholder="crop year" required="required" /><br><br><br>
@@ -36,7 +36,30 @@ body {
         <button type="submit" class="btn btn-primary btn-block btn-large">advice the  alternative crop</button>
     </form>
 
-
+   <br>
+   <br>
+   {{ prediction1_text }}
+   <br>
+   <br>
+   {{temp1}}
+   <br>
+   <br>
+   {{wind_speed}}
+   <br>
+   <br>
+   {{latitude}}
+   <br>
+   <br>
+   {{longitude}}
+   <br>
+   <br>
+   {{description}}
+   <br>
+   <br>
+   {{pressure}}
+   <br>
+   <br>
+   {{humidity}}
    
 
  </div>
